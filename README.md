@@ -23,7 +23,7 @@ python3 -m http.server 8000 --directory site
 
 Cloudflare Pages 的 Git integration 會在 production branch 更新後自動部署。設定方式見[Cloudflare Pages Git integration 文件](https://developers.cloudflare.com/pages/configuration/git-integration/)與[建置設定文件](https://developers.cloudflare.com/pages/configuration/build-configuration/)。
 
-部署狀態：尚未建立遠端 repository，也尚未部署。
+GitHub public repository 已建立：https://github.com/Will413028/fitness-training-guide。Cloudflare Pages Git integration 尚未設定，網站尚未部署。
 
 ## 公開內容範圍
 
