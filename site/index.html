@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>半馬訓練與飲食計畫</title>
+  <style>
+    :root{--ink:#17252a;--muted:#57676b;--paper:#f5f7f2;--card:#fff;--line:#dce4de;--accent:#176f62;--accent-dark:#12574e;--warm:#f6e7cf;--shadow:0 18px 44px rgba(22,48,44,.07)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}a{color:var(--accent-dark)}a:hover{text-decoration-thickness:2px}button,input,select{font:inherit}button{cursor:pointer}.skip{position:absolute;left:-999px;top:8px;background:#fff;padding:8px}.skip:focus{left:8px;z-index:9}
+    .topbar{position:sticky;top:0;z-index:4;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1220px;margin:auto;padding:10px 24px;display:flex;align-items:center;gap:26px}.brand{font-size:15px;font-weight:800;letter-spacing:.03em;color:var(--ink);text-decoration:none;white-space:nowrap}.brand-mark{display:inline-grid;place-items:center;width:30px;height:30px;margin-right:8px;border-radius:10px;background:var(--accent);color:#fff}.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.nav a{display:block;padding:9px 12px;border-radius:9px;color:var(--muted);font-size:14px;text-decoration:none;white-space:nowrap}.nav a:hover,.nav a:focus-visible{background:#e8f2ed;color:var(--accent-dark)}
+    main{max-width:1220px;margin:auto;padding:0 24px 70px}section{scroll-margin-top:80px}.hero{padding:58px 0 32px;display:grid;grid-template-columns:1.4fr .8fr;gap:28px;align-items:end}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(36px,5vw,66px);letter-spacing:-.05em;line-height:1.12;margin:10px 0 16px}.hero p{max-width:720px;color:var(--muted);margin:0}.hero-card{background:#183d37;color:#f8fbf6;border-radius:22px;padding:25px 27px;box-shadow:var(--shadow)}.hero-card .label{color:#b8d6cb;font-size:13px}.hero-card strong{display:block;font-size:26px;line-height:1.3;margin:5px 0}.hero-card p{color:#d7e7df;font-size:14px}.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.pill{border:1px solid #aec9be;color:#e7f2eb;border-radius:99px;padding:5px 10px;font-size:12px}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:44px 0 17px}.section-heading h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.035em;line-height:1.2;margin:0}.section-heading p{color:var(--muted);margin:5px 0 0}.grid{display:grid;gap:16px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:var(--shadow);min-width:0}.panel h2{font-size:20px;margin:0 0 12px}.panel h3{font-size:17px;margin:19px 0 8px}.panel p{margin:9px 0}.panel ul{margin:8px 0;padding-left:22px}.panel li{margin:5px 0}.panel blockquote{margin:12px 0;border-left:3px solid var(--accent);padding:7px 12px;background:#eef6f1;color:#37564d}.panel code,.recipe code{background:#f1f4f1;border-radius:4px;padding:1px 4px;font-size:.9em}.wide{grid-column:1/-1}.table-wrap{overflow-x:auto;margin:13px 0}table{border-collapse:collapse;width:100%;font-size:14px}th{text-align:left;background:#edf4ef;color:#31544b;font-size:13px}td,th{border-bottom:1px solid var(--line);padding:9px 11px;vertical-align:top}tr:last-child td{border-bottom:0}.today-row{background:#e7f5ea}.today-row td:first-child{font-weight:800;color:var(--accent-dark)}
+    .metric{background:#e6f1ea;border:1px solid #c9e0d1;border-radius:17px;padding:18px 20px}.metric strong{font-size:24px;display:block;line-height:1.25}.metric span{display:block;color:var(--muted);font-size:13px;margin-top:5px}.week-control{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.week-control label{font-size:14px;color:var(--muted)}select,input[type=search]{background:#fff;border:1px solid #c6d5cc;border-radius:10px;padding:9px 12px;color:var(--ink)}select:focus,input:focus{outline:2px solid var(--accent);outline-offset:2px}.highlight{border-color:#8cbea3;background:linear-gradient(140deg,#fff,#f0faf2)}.note{color:var(--muted);font-size:13px}.source{font-size:13px;color:var(--muted);margin-top:14px}
+    .recipe-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.recipe-toolbar input{min-width:240px;flex:1}.filter{border:1px solid #bed4c8;background:#fff;border-radius:10px;padding:8px 13px;color:#30574c}.filter[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent)}.recipe-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.recipe{background:#fff;border:1px solid var(--line);border-radius:14px;min-width:0;overflow:hidden}.recipe[hidden]{display:none}.recipe summary{list-style:none;display:flex;align-items:center;gap:11px;padding:16px 18px;cursor:pointer;font-weight:700}.recipe summary::-webkit-details-marker{display:none}.recipe summary:after{content:"＋";margin-left:auto;color:var(--accent);font-size:19px;font-weight:400}.recipe[open] summary:after{content:"−"}.recipe-number{font-weight:800;color:var(--accent);font-size:13px}.badge{background:#eef5ee;border-radius:99px;padding:3px 8px;color:#3c6653;font-size:11px;font-weight:700;white-space:nowrap}.recipe-body{padding:0 18px 17px;color:#344544}.recipe-body p{margin:8px 0}.recipe-body strong{color:var(--ink)}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}footer{border-top:1px solid var(--line);margin-top:55px;padding-top:21px;color:var(--muted);font-size:13px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.grid.three{grid-template-columns:1fr}.grid.two,.recipe-grid{grid-template-columns:1fr}.topbar-inner{gap:12px}.hero{padding-top:38px}}@media(max-width:560px){main{padding:0 15px 45px}.topbar-inner{padding:9px 12px}.brand{font-size:13px}.nav a{padding:7px 8px;font-size:13px}.hero h1{font-size:39px}.panel{padding:17px}.recipe summary{padding:14px}.badge{display:none}.section-heading{display:block}}
+    @media print{.topbar,.recipe-toolbar,.week-control{display:none}.hero{padding-top:0}.hero-card{background:#fff;color:#000;box-shadow:none}.hero-card p,.hero-card .label{color:#333}.panel,.recipe{box-shadow:none;break-inside:avoid}.recipe{display:block}.recipe-body{display:block}body{background:#fff}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到內容</a>
+  <header class="topbar"><div class="topbar-inner"><a class="brand" href="#top"><span class="brand-mark">訓</span>訓練 × 飲食</a><nav class="nav" aria-label="主要導覽"><a href="#overview">總覽</a><a href="#timetable">時間表</a><a href="#weekly">每週安排</a><a href="#strength">重訓</a><a href="#running">跑步</a><a href="#nutrition">飲食</a><a href="#fasting">斷食</a><a href="#recipes">食譜</a></nav></div></header>
+  <main id="main">
+    <section class="hero" id="top"><div><span class="eyebrow">Half marathon training guide</span><h1>把每一餐、每一次訓練<br>接到同一條路上。</h1><p>每週三次重訓與三次跑步，朝 2027 臺北馬拉松半馬完賽前進。課表從跑走交替循序建立，不追配速。</p></div><div class="hero-card"><span class="label">訓練目標</span><strong>21.0975 km 半馬完賽</strong><p>以輕鬆跑走建立基礎，逐步延長跑步時間。</p><div class="pills"><span class="pill">75 kg 範例基準</span><span class="pill">3 次重訓</span><span class="pill">3 次跑步</span></div></div></section>
+
+    <section id="overview"><div class="section-heading"><div><h2>先看這裡</h2><p>從今天的安排開始，再往下看完整細節。</p></div></div><div class="grid three"><div class="metric"><strong>3 + 3</strong><span>每週重訓＋跑步次數</span></div><div class="metric"><strong>約 60 分</strong><span>每次重訓含熱身</span></div><div class="metric"><strong>150 g</strong><span>每天蛋白質起始目標，依實際紀錄校準</span></div></div><div class="grid two" style="margin-top:16px"><article class="panel highlight"><h2 id="today-title">今天的安排</h2><p id="today-plan">載入中…</p><p><a href="#timetable">看今天幾點吃、練什麼 ↓</a></p><p class="note">依臺北時間與固定週表顯示；實際訓練週次由你選定。</p></article><article class="panel"><h2>目前基線與目標</h2><ul>
+<li>體重範例基準：75 kg；份量與熱量目標應依個人狀況調整。</li>
+<li>每週三次重訓、三次跑步；每次重訓約 60 分鐘，跑步時間另計。</li>
+<li>目標：2027 臺北馬拉松 <strong>21.0975 km 半馬完賽</strong>；以跑走交替漸進訓練，初期不追配速。</li>
+<li>2027 賽事簡章與報名資訊公布後，需核對當屆距離、關門時間及報名方式。</li>
+</ul></article></div></section>
+
+    <section id="timetable"><div class="section-heading"><div><h2>每天什麼時候吃、什麼時候練</h2><p>時鐘時間是建議範例，請依個人健康情況與日程調整。</p></div><div class="week-control"><label for="schedule-select">健身房日</label><select id="schedule-select"><option value="tue-thu-fri">週二・四・五（建議）</option><option value="tue-wed-fri">週二・三・五</option></select></div></div><article class="panel" id="daily-plan"><p><strong>建議時段範例，請依個人作息調整。</strong> 以下 12:00–20:00 餐期供循序適應 16:8 後參考；前兩週可依 12:12 → 14:10 漸進移動餐期。R1–R6 的材料與份量見食譜；此表沿用一週菜色輪替，不宣稱全天營養已精算配平。</p>
+<div class="table-wrap"><table><thead><tr><th>星期</th><th>12:00 第一餐</th><th>13:15</th><th>15:30 第二餐</th><th>17:45 訓練</th><th>19:15 晚餐</th></tr></thead><tbody>
+<tr><td>一</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R1 雞胸馬鈴薯盤</td><td>休息／散步</td><td>R3 鮭魚馬鈴薯盤</td></tr>
+<tr><td>二</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R2 雞胸地瓜盤</td><td>重訓 A 55–60 分：深蹲或腿推、推胸、胸靠划船、腿彎舉、提踵</td><td>R5 蝦仁毛豆馬鈴薯盤</td></tr>
+<tr><td>三</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R1 雞胸馬鈴薯盤</td><td>跑走①：依當週主課，另前後各走 5 分</td><td>R6 雞蛋毛豆烤蔬菜地瓜</td></tr>
+<tr><td>四</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R2 雞胸地瓜盤</td><td>重訓 B 50–60 分：RDL 或臀推、分腿蹲、高位下拉、上斜推胸、提踵、Dead bug</td><td>R5 蝦仁毛豆馬鈴薯盤</td></tr>
+<tr><td>五</td><td>B1 優格燕麥碗＋蛋</td><td>跑走②：依當週主課，另前後各走 5 分</td><td>R1 雞胸馬鈴薯盤</td><td>重訓 C 45–55 分：推胸、坐姿划船或下拉、側平舉、反向飛鳥、彎舉、下壓</td><td>R4 鮭魚地瓜花椰菜盤</td></tr>
+<tr><td>六</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R6 雞蛋毛豆烤蔬菜地瓜</td><td>休息／散步</td><td>R2 雞胸地瓜盤</td></tr>
+<tr><td>日</td><td>B1 優格燕麥碗＋蛋</td><td>—</td><td>R5 蝦仁毛豆馬鈴薯盤</td><td>跑走③：依當週主課，另前後各走 5 分；日後逐步加長</td><td>R3 鮭魚馬鈴薯盤</td></tr>
+</tbody></table></div>
+<p><strong>時間與加餐調整</strong>：重訓時段可按實際可用時間移動；盡量在運動後正常吃晚餐。週五兩課最好分時段。B1、R 菜色之外，用 S1 無糖豆漿＋香蕉或 S2 毛豆依當天熱量和蛋白質缺口補足；雙課日約 2,400 kcal，單課日約 2,300 kcal，休息日約 2,200 kcal，蛋白質起始目標約 150 g／天。週日長跑增加到需途中補給或跑後進食超出 20:00 時，放寬窗口。跑走主課依下方 12 週表的實際進度，不每週重做第一週。重訓各動作組數見下方 A／B／C 表，前兩週每動作最多 2 組。</p><p class="note" id="daily-alternate-note" hidden></p></article><div id="daily-alternate-data" hidden><p>餐食與時段沿用上表；以下只列訓練時段的改動。週二與週五各兩課，跑走在 13:15、重訓在 17:45；若無法分開，依備選週表調整，勿為守時壓縮補給與恢復。</p>
+<div class="table-wrap"><table><thead><tr><th>星期</th><th>13:15</th><th>17:45 訓練</th></tr></thead><tbody>
+<tr><td>一</td><td>—</td><td>休息／散步</td></tr>
+<tr><td>二</td><td>跑走①：依當週跑走主課，另前後各走 5 分</td><td>重訓 A：深蹲或腿推、推胸、胸靠划船、腿彎舉、提踵</td></tr>
+<tr><td>三</td><td>—</td><td>重訓 C：推胸、坐姿划船或下拉、側平舉、反向飛鳥、彎舉、下壓</td></tr>
+<tr><td>四</td><td>—</td><td>休息／散步</td></tr>
+<tr><td>五</td><td>跑走②：依當週跑走主課，另前後各走 5 分</td><td>重訓 B：RDL 或臀推、分腿蹲、高位下拉、上斜推胸、提踵、Dead bug</td></tr>
+<tr><td>六</td><td>—</td><td>休息／散步</td></tr>
+<tr><td>日</td><td>—</td><td>跑走③：依當週跑走主課，日後逐步加長</td></tr>
+</tbody></table></div></div><p class="source"><a href="#strength">查看重訓組數</a> · <a href="#running">查看跑走週次</a> · <a href="#recipes">查看完整食譜</a></p></section>
+
+    <section id="weekly"><div class="section-heading"><div><h2>一週安排</h2><p>在上方選健身房日；跑步仍維持每週三次。</p></div></div><article class="panel" id="weekly-plan"><div class="table-wrap"><table><thead><tr><th>星期</th><th>內容</th><th>時間</th></tr></thead><tbody>
+<tr><td>一</td><td>休息、一般走路、治療師指定放鬆</td><td>不加訓練量</td></tr>
+<tr><td>二</td><td>重訓 A：全身、腿部主課</td><td>55–60 分鐘</td></tr>
+<tr><td>三</td><td>輕鬆跑走①</td><td>初期 25–40 分鐘</td></tr>
+<tr><td>四</td><td>重訓 B：髖伸與單腳穩定</td><td>50–60 分鐘</td></tr>
+<tr><td>五</td><td>輕鬆跑走②＋重訓 C：上半身</td><td>跑步額外安排；重訓 45–55 分鐘</td></tr>
+<tr><td>六</td><td>休息</td><td>—</td></tr>
+<tr><td>日</td><td>跑走③，之後逐步成為長跑</td><td>初期 25–40 分鐘，依階段延長</td></tr>
+</tbody></table></div>
+<p><strong>預設健身房日為二、四、五。</strong> 週四 B 與週五 C 連續，B 的高位下拉／上斜推胸先維持前兩週各最多 2 組；週五上半身仍疲勞時，C 的推胸與划船各減 1 組，不為補量做到力竭。週五最好把跑走與重訓早晚分開；同一時段則先輕鬆跑，再練上半身。週日長跑變長後，若週二雙腿仍累，A 腿部各減 1 組。重訓頻率保留，但腿部組數要隨跑量調整。</p></article><article class="panel" id="alternate-plan" hidden><div class="table-wrap"><table><thead><tr><th>星期</th><th>內容</th><th>時間</th></tr></thead><tbody>
+<tr><td>一</td><td>休息、一般走路</td><td>不加訓練量</td></tr>
+<tr><td>二</td><td>重訓 A＋輕鬆跑走①</td><td>重訓約 60 分鐘；跑步額外安排</td></tr>
+<tr><td>三</td><td>重訓 C：上半身</td><td>45–55 分鐘</td></tr>
+<tr><td>四</td><td>休息、一般走路、治療師指定放鬆</td><td>不加訓練量</td></tr>
+<tr><td>五</td><td>重訓 B＋輕鬆跑走②</td><td>重訓約 60 分鐘；跑步額外安排</td></tr>
+<tr><td>六</td><td>休息</td><td>—</td></tr>
+<tr><td>日</td><td>跑走③，之後逐步成為長跑</td><td>初期 25–40 分鐘，依階段延長</td></tr>
+</tbody></table></div>
+<p>二／三連練，三的推胸與划船依上半身疲勞各減 1 組；五的 B 腿課與跑走最好分時段，以輕鬆跑走為主，若影響週日跑步則 B 腿部各減 1 組。三次跑仍有間隔；不要在備選方案上額外套用預設表的週三跑走位置。</p></article></section>
+
+    <section id="strength"><div class="section-heading"><div><h2>健身房重訓</h2><p>前兩週每動作最多兩組，保留 3–4 下餘力。</p></div></div><div class="grid three"><article class="panel" id="strength-a"><h2>重訓 A：腿部主課與水平推拉</h2><div class="table-wrap"><table><thead><tr><th>動作</th><th>正式組 × 次數</th></tr></thead><tbody>
+<tr><td>深蹲或腿推，固定選一種</td><td>3 × 6–10</td></tr>
+<tr><td>啞鈴臥推／器械推胸</td><td>3 × 8–12</td></tr>
+<tr><td>胸靠式划船</td><td>3 × 8–12</td></tr>
+<tr><td>腿彎舉</td><td>2 × 10–15</td></tr>
+<tr><td>站姿提踵</td><td>2 × 12–15</td></tr>
+</tbody></table></div>
+<p>共 13 組。</p></article>
+<article class="panel" id="strength-b"><h2>重訓 B：髖伸與單腳穩定</h2><div class="table-wrap"><table><thead><tr><th>動作</th><th>正式組 × 次數</th></tr></thead><tbody>
+<tr><td>RDL；技術未熟可用器械臀推</td><td>2 × 8–10</td></tr>
+<tr><td>扶支架分腿蹲</td><td>2 × 每側 8–10</td></tr>
+<tr><td>高位下拉</td><td>3 × 8–12</td></tr>
+<tr><td>上斜啞鈴推胸</td><td>3 × 8–12</td></tr>
+<tr><td>坐姿提踵</td><td>2 × 12–15</td></tr>
+<tr><td>Dead bug</td><td>2 × 每側 6–10</td></tr>
+</tbody></table></div>
+<p>共 14 組；單側動作左右做完才算一輪。</p></article>
+<article class="panel" id="strength-c"><h2>重訓 C：上半身</h2><div class="table-wrap"><table><thead><tr><th>動作</th><th>正式組 × 次數</th></tr></thead><tbody>
+<tr><td>器械推胸</td><td>3 × 8–12</td></tr>
+<tr><td>坐姿划船或高位下拉</td><td>3 × 8–12</td></tr>
+<tr><td>側平舉</td><td>2 × 12–20</td></tr>
+<tr><td>反向飛鳥</td><td>2 × 12–20</td></tr>
+<tr><td>彎舉</td><td>2 × 10–15</td></tr>
+<tr><td>繩索下壓</td><td>2 × 10–15</td></tr>
+</tbody></table></div>
+<p>共 14 組；週五不再加腿課。</p></article></div><div style="margin-top:16px"><article class="panel"><h2>負荷與恢復</h2><ul>
+<li>每次先輕鬆活動及漸進熱身約 8 分鐘，正式訓練約 45 分鐘，剩餘時間記錄／放鬆；熱身組不計。</li>
+<li><strong>前兩週每動作最多 2 組，保留 3–4 下餘力（RIR）；適應後保留 2–3 下，腿部不做到力竭。</strong></li>
+<li>複合動作休息 2–3 分鐘，小肌群 60–90 秒；器材等待超時，省略最後一項輔助動作，不壓縮主要動作休息。</li>
+<li>雙重漸進：同重量逐步加次數，全組到區間上限且姿勢穩定，再加最小重量；加重後回到區間下緣。</li>
+<li>增加跑量的那週，腿部重量先維持。痠痛連續影響跑步，腿部各動作先減一組。</li>
+<li>連續兩次表現下降且睡眠、疲勞或痠痛變差，安排一週組數約減半。新出現或明顯加重的疼痛則停下誘發動作並重新評估，不當成一般痠痛硬練。</li>
+<li>睡眠 7–9 小時；治療師指定放鬆按其頻率，不在練前做到疲累。</li>
+</ul></article></div></section>
+
+    <section id="running"><div class="section-heading"><div><h2>半馬跑步路線</h2><p>Week 1 從實際開始執行的那週算。</p></div><div class="week-control"><label for="week-select">我的起始週次</label><select id="week-select" aria-label="選擇跑走週次"></select></div></div><div class="grid two"><article class="panel highlight"><h2 id="selected-week-title">Week 1 跑走</h2><p id="selected-week-plan"></p><p class="note">每次先快走 5 分鐘、完成主課、再慢走 5 分鐘。跑段保持能說完整句子。</p></article><article class="panel"><h2>12 週進度</h2><div id="run-table"><p><strong>Week 1 從實際開始執行的那週算，依完成狀況循序推進。</strong> 每次先快走 5 分鐘、完成下表、再慢走 5 分鐘。跑段能說完整句子、主觀強度約 3–4/10；太喘就放慢或走路。前八週三次使用相同主課，不另加長週日。</p>
+<div class="table-wrap"><table><thead><tr><th>週次</th><th>每次主課（不含前後走路）</th></tr></thead><tbody>
+<tr><td>1</td><td>跑 1 分／走 2 分 × 6</td></tr>
+<tr><td>2</td><td>跑 1 分／走 2 分 × 8</td></tr>
+<tr><td>3</td><td>跑 2 分／走 2 分 × 6</td></tr>
+<tr><td>4</td><td>重複第 3 週；疲累則退回第 2 週</td></tr>
+<tr><td>5</td><td>跑 3 分／走 2 分 × 5</td></tr>
+<tr><td>6</td><td>跑 4 分／走 2 分 × 5</td></tr>
+<tr><td>7</td><td>跑 6 分／走 2 分 × 4</td></tr>
+<tr><td>8</td><td>重複第 7 週，或減少一輪</td></tr>
+<tr><td>9</td><td>跑 8 分／走 2 分 × 3</td></tr>
+<tr><td>10</td><td>跑 12 分／走 2 分 × 2</td></tr>
+<tr><td>11</td><td>兩次連跑 20–25 分；週日可跑走累積 30 分</td></tr>
+<tr><td>12</td><td>兩次連跑 25 分；週日嘗試連跑 30 分，必要時可走</td></tr>
+</tbody></table></div>
+<p>這是個人起始提案，並非逐字採用 NHS 課表。<strong>30 分鐘不等於必須跑到 5 km。</strong> 進階條件：三次皆能輕鬆完成、沒有影響步態的疼痛、隔天走路及上下樓大致正常、疲勞未影響睡眠或下一堂。否則重複一週；漏課不補跑、不合併。</p></div></article></div><div class="section-heading"><div><h2>2027 半馬階段</h2></div></div><article class="panel"><div class="table-wrap"><table><thead><tr><th>階段</th><th>約略時間</th><th>能力目標</th></tr></thead><tbody>
+<tr><td>起步</td><td>現在～2026 年底</td><td>每週三跑，輕鬆跑約 30 分鐘</td></tr>
+<tr><td>基礎</td><td>2027 年 1–3 月</td><td>兩次 30–40 分，週日逐步到 45–60 分</td></tr>
+<tr><td>穩定</td><td>2027 年 4–8 月</td><td>維持三跑，長跑約 60–90 分，逐步熟悉 8–12 km</td></tr>
+<tr><td>半馬專項</td><td>比賽前約 14–16 週</td><td>長跑、跑走策略與補給；依當時能力排細表</td></tr>
+<tr><td>減量</td><td>最後約 10–14 天</td><td>降跑量及腿部組數，保留輕鬆活動</td></tr>
+</tbody></table></div>
+<p>日期是方向，依實際起跑日與能力順延。能穩定跑 30 分後，每一到兩週只把週日加 5–10 分；每三到四週減量，長跑縮短約 20–30%。恢復需好幾天就維持或縮短。夏季按體感，選清晨、晚間或跑步機，不追涼天配速。</p>
+<p>進入半馬專項前，先連續數週穩定三跑、長跑完成 8–10 km 且恢復良好。後期可逐步接近 16–18 km；慢速跑者先以約 2–2.5 小時作重新評估點，不硬湊公里數，也不必訓練先跑完 21.1 km。最終配速與跑走策略需核對當屆各關門點。</p></article></section>
+
+    <section id="nutrition"><div class="section-heading"><div><h2>飲食與食材</h2><p>主食以馬鈴薯、地瓜為主；不使用米飯、豆腐與味噌。</p></div></div><div class="grid two"><article class="panel"><h2>份量與偏好</h2><ul>
+<li>本計畫不使用<strong>米飯、豆腐與味噌</strong>；主食以<strong>馬鈴薯／地瓜</strong>為主，也使用毛豆與無糖豆漿。</li>
+<li>慣用設備：<strong>Instant Vortex Pro 智慧萬用氣炸烤箱</strong>；沒有調理機，使用刀切／剁碎、叉壓、碗拌與耐熱烤皿。下列為起始試做配方，尚未有實際口味、熟度或份量回饋。</li>
+<li>75 kg 範例基準，每週三次重訓＋三次跑步；起始熱量估算為休息日約 2,200、單課日約 2,300、雙課日約 2,400 kcal，蛋白質約 150 g/天。此非實測維持熱量，應依個人狀況與趨勢調整。</li>
+<li><strong>本頁新版肉、海鮮、薯類、蔬菜均用烹調前可食重量</strong>；冷凍蝦仁按解凍瀝乾重量、毛豆按去殼重量。脆穀為乾重。不要與舊餐單熟重混用。</li>
+<li>單道食譜不等於全天配額；部分商品完整營養標示尚待補齊，不宣稱整週已精算配平。</li>
+</ul></article><article class="panel"><h2>食材清單</h2><div class="table-wrap"><table><thead><tr><th>分類</th><th>食材</th><th>備註</th></tr></thead><tbody>
+<tr><td>主食</td><td>馬鈴薯、地瓜；原味大燕麥片可作早餐</td><td>午晚餐主食不用米飯；桂格有機大燕麥片為推薦選項</td></tr>
+<tr><td>肉與海鮮</td><td>雞胸肉、鮭魚、冷凍蝦仁</td><td>雞胸／鮭魚具體品項未指定；先按未熟、無裹粉原味版本設計</td></tr>
+<tr><td>蛋與豆類</td><td>雞蛋、冷凍毛豆、無糖豆漿</td><td>不放豆腐；豆漿鈣量需看標示，不能默認有強化鈣</td></tr>
+<tr><td>蔬菜</td><td>冷凍花椰菜、彩椒、杏鮑菇／蘑菇、櫛瓜、洋蔥</td><td>每餐選兩三種，避免盤面過滿</td></tr>
+<tr><td>水果</td><td>冷凍藍莓、香蕉</td><td>藍莓依包裝食用／加熱指示處理</td></tr>
+<tr><td>優格</td><td>科克蘭零脂希臘式優格 907 g × 2；簡單點冷藏藍莓優格 130 g</td><td>科克蘭為日常早餐建議，無添加糖、每 100 g 蛋白質 9.4 g；簡單點每杯蛋白質 9.1 g，含蔗糖，可作換口味選項。依個人採買與口味選用</td></tr>
+<tr><td>脆穀</td><td>桂格蛋白可可燕麥脆穀</td><td>官網蛋白質 23%，50 g 約 11.5 g；含糖及油，不等同原味燕麥</td></tr>
+</tbody></table></div>
+<p>原味燕麥不是必買，但若想把無添加糖早餐作為固定選擇，可用桂格有機大燕麥片；可可脆穀改作 15–20 g 的口感配料，並減少原味燕麥份量。橄欖油／芥花油、蒜粉、黑胡椒、紅椒粉、義式香料及檸檬是建議調味料，尚非已購確認。</p>
+<p>產品來源（Costco 產品頁）：<a href="https://www.costco.com.tw/Warehouse-Only/Food-Beverages/Chilled/Kirkland-Signature-Chilled-Nonfat-Greek-Yogurt-907-g-X-2-Count/p/599369" target="_blank" rel="noopener">科克蘭零脂希臘式優格</a>（成分為發酵脫脂牛奶與菌種；無添加糖；200 g 約 18.8 g 蛋白質，未標示具體濃縮製程）、<a href="https://www.costco.com.tw/Food-Dining/Drinks/Powdered-Drink-Mix-Cereal-Oats/Quaker-Organic-Whole-Oats-935-g-X-2-Count/p/116958" target="_blank" rel="noopener">桂格有機大燕麥片</a>（成分為有機燕麥）、<a href="https://www.costco.com.tw/Warehouse-Only/Food-Beverages/Chilled/Simple-Is-Better-Chilled-Blueberry-Yogurt-130-g-X-12-Pack/p/151454" target="_blank" rel="noopener">簡單點藍莓優格</a>、<a href="https://www.costco.com.tw/Food-Dining/Drinks/Powdered-Drink-Mix-Cereal-Oats/Quaker-Protein-Cocoa-Oat-Granola-750-g/p/145177" target="_blank" rel="noopener">蛋白可可脆穀</a>。仍須依包裝核對各品項完整熱量、脂肪、碳水與糖標示。</p></article><article class="panel"><h2>早餐與點心</h2><p><strong>早餐 B1：科克蘭優格原味燕麥碗＋蛋（日常建議）</strong></p>
+<ul>
+<li>科克蘭零脂希臘式優格 200 g＋桂格有機大燕麥片乾重 40–50 g＋冷凍藍莓 80–100 g；雞蛋 2 顆另煮。優格提供約 18.8 g 蛋白質，整餐營養以商品標示與實際蛋大小核算。</li>
+<li>燕麥依包裝指示泡軟或煮熟；需加熱者放涼後再拌優格。太稠可加水或無糖豆漿 50–100 ml；太酸可從當日水果份量加入半根香蕉。</li>
+<li>想保留脆口感，可於食用前加可可脆穀 15–20 g，並減少原味燕麥，不把脆穀當額外不計量配料。</li>
+</ul>
+<p><strong>早餐 B2：藍莓脆穀碗＋蛋（換口味）</strong></p>
+<ul>
+<li>藍莓優格 1 杯（130 g）＋脆穀 50 g＋冷凍藍莓 80–100 g。</li>
+<li>雞蛋 2 顆另煮，蛋白質合計約 33–35 g；熱量待商品完整標示校準。</li>
+<li>起床很快就跑時，B1 或 B2 的蛋與部分優格移到跑後，跑前可從當日份量取半根至一根香蕉。</li>
+</ul>
+<p><strong>點心 S1：豆漿香蕉；S2：毛豆</strong></p>
+<ul>
+<li>S1：無糖豆漿 300–400 ml＋香蕉 1 根；依豆漿標示計蛋白質。</li>
+<li>S2：去殼毛豆 100–150 g，按包裝煮熟／復熱，可作點心或正餐配菜。</li>
+<li>兩種按當天熱量與蛋白質缺口選用，並非都必須額外吃；毛豆不能與雞胸按相同重量視為等蛋白替換。</li>
+</ul></article><article class="panel"><h2>飲食追蹤</h2><p><strong>75 kg 範例起始估算；2,200 kcal 是休息日參考值，不是每日上限或實測維持熱量。</strong></p>
+<div class="table-wrap"><table><thead><tr><th>日型</th><th>起始熱量</th></tr></thead><tbody>
+<tr><td>休息日</td><td>約 2,200 kcal</td></tr>
+<tr><td>單一訓練日</td><td>約 2,300 kcal</td></tr>
+<tr><td>跑步＋重訓雙課日</td><td>約 2,400 kcal</td></tr>
+</tbody></table></div>
+<ul>
+<li>蛋白質 <strong>150 g/天</strong>、脂肪約 <strong>60–75 g/天</strong>，剩餘熱量用碳水分配；跑量增加的補充優先給碳水。</li>
+<li><strong>食材與份量</strong>：不使用米飯、豆腐與味噌，正餐主食用馬鈴薯／地瓜。收錄 24 道烤箱正餐、優格與燕麥早餐、點心及一週輪替；食材以烹調前可食重量計。單道食譜不代表全天營養配平，商品營養以實際包裝標示為準。</li>
+<li><strong>斷食安排</strong>：如嘗試 16:8，循序從 12:12、14:10 調整；長時間斷食需個別醫療評估。</li>
+<li>可用晨起體重週平均與固定條件下的腰圍趨勢追蹤變化，不從腰圍直接換算體脂率。</li>
+<li>兩週後依體重、腰圍、飢餓、睡眠及恢復校準；減脂只緩慢進行，半馬專項後期優先維持體重與恢復，不因單週體重波動砍熱量。</li>
+<li>初期短跑不需能量膠；長跑超過一小時後再逐步練習途中補水與碳水，不在比賽當天首次嘗試。</li>
+<li>每次跑步記「時間、跑走內容、主觀強度、隔天恢復」；重訓另記重量、各組次數及 RIR。持續記錄訓練負荷與隔天恢復，據此調整進度。</li>
+</ul></article></div><div class="section-heading"><div><h2>氣炸烤箱操作</h2></div></div><article class="panel"><ul>
+<li>先按機器指示預熱，食物單層留空隙；放不下就分批。以下時間是試做範圍，非原廠保證時間。</li>
+<li>食譜若未另註明模式，均用 <strong>Air Fry</strong>；寫「Bake」的烤皿菜則選 <strong>Bake</strong>。各批時間從預熱完成、放入食材後開始計；溫度與分鐘數是起始範圍，肉、魚、蛋以中心熟度為準。</li>
+<li>雞胸、鮭魚及蝦仁先冷藏解凍；花椰菜可不解凍，去除鬆散冰霜。已熟舒肥雞胸按包裝復熱，不套生肉時間。</li>
+<li>肉類與蔬菜分盤，避免生肉汁滴到其他食物。薯類先烤，完成後再烤蛋白質與蔬菜，較容易控制熟度。</li>
+<li><strong>雞胸最厚處至少 74°C；魚／蝦中心至少 63°C</strong>。用食物溫度計確認，不只看表面顏色；蝦肉應不透明。熟食復熱以中心 74°C 為準。<a href="https://www.foodsafety.gov/food-safety-charts/safe-minimum-internal-temperatures" target="_blank" rel="noopener">FoodSafety.gov</a></li>
+<li>油量為每餐總量；使用耐熱烤皿時不阻擋整個氣流，不空放容易被吹起的烘焙紙預熱。</li>
+</ul>
+<div class="table-wrap"><table><thead><tr><th>食材處理</th><th>Air Fry 起始設定</th><th>操作</th></tr></thead><tbody>
+<tr><td>馬鈴薯約 2 cm 塊</td><td>190°C，約 20–30 分</td><td>中途翻動，叉子易穿透</td></tr>
+<tr><td>地瓜約 2 cm 塊</td><td>180–190°C，約 18–25 分</td><td>中途翻動，大小影響時間</td></tr>
+<tr><td>已解凍雞胸，厚度約 2 cm</td><td>180°C，約 12–18 分</td><td>12 分起測溫，未達溫續烤</td></tr>
+<tr><td>已解凍鮭魚，厚約 2–3 cm</td><td>180°C，約 8–12 分</td><td>8 分起測溫</td></tr>
+<tr><td>已解凍生蝦仁，擦乾</td><td>180°C，約 6–10 分</td><td>大小影響時間，6 分起檢查熟度</td></tr>
+<tr><td>冷凍花椰菜</td><td>190°C，約 10–15 分</td><td>中途翻動，按包裝熟食指示調整</td></tr>
+<tr><td>彩椒／洋蔥切塊</td><td>180–190°C，約 10–15 分</td><td>中途翻動</td></tr>
+<tr><td>杏鮑菇／蘑菇、櫛瓜厚片</td><td>180–190°C，約 8–15 分</td><td>不堆疊，與需酥脆的薯類分盤</td></tr>
+</tbody></table></div></article><div class="section-heading"><div><h2>一週餐食輪替</h2></div></div><article class="panel"><p>早餐以 B1 為日常建議、B2 可換口味；點心依缺口選 S1／S2。下表依健身房二／四／五的預設週表標註訓練日；若改用二／三／五，菜色可照原順序輪替，訓練日與加餐則按實際課表。下表只排菜色，不宣稱已達每日 150 g 蛋白或熱量目標；完整標示與實吃紀錄補齊後再配平。</p>
+<div class="table-wrap"><table><thead><tr><th>星期</th><th>午餐</th><th>晚餐</th></tr></thead><tbody>
+<tr><td>一（休息）</td><td>R1</td><td>R3</td></tr>
+<tr><td>二（重訓 A）</td><td>R2</td><td>R5</td></tr>
+<tr><td>三（跑走）</td><td>R1</td><td>R6</td></tr>
+<tr><td>四（重訓 B）</td><td>R2</td><td>R5</td></tr>
+<tr><td>五（雙課）</td><td>R1</td><td>R4 蒜香黑胡椒鮭魚</td></tr>
+<tr><td>六（休息）</td><td>R6</td><td>R2</td></tr>
+<tr><td>日（跑走）</td><td>R5</td><td>R3</td></tr>
+</tbody></table></div>
+<p>週五可在其中一餐多加生馬鈴薯約 150 g 或生地瓜約 100 g，再依實際熱量校準。初期短跑走不需刻意大量加餐；長跑延長時另調補給。休息日保留主食，不因沒有訓練就刪除。</p></article></section>
+
+    <section id="fasting"><div class="section-heading"><div><h2>斷食排程</h2><p>16:8 漸進試行參考。</p></div></div><article class="panel"><p>可先從 12:12 開始，適應後試 14:10，再視個人狀況考慮 16:8。下表僅是時間範例，並非必要的健康方案；若影響正常進食、睡眠或訓練，就放寬進食時段。</p><div class="table-wrap"><table><thead><tr><th>階段</th><th>進食時段範例</th></tr></thead><tbody><tr><td>第 1 週</td><td>08:00–20:00（12:12）</td></tr><tr><td>第 2 週</td><td>10:00–20:00（14:10）</td></tr><tr><td>第 3 週起</td><td>12:00–20:00（16:8）</td></tr></tbody></table></div><p>有固定用藥、慢性疾病，或腎臟、肝臟與尿酸相關健康疑慮者，嘗試斷食前先請醫療專業人員評估；不要為了守進食時段自行停藥。每季一次的 72 小時斷食不列為一般課表，也不提供固定日期或操作指示，須經個別醫療評估後再決定。</p><p>參考：<a href="https://www.hopkinsmedicine.org/health/expert-qa/intermittent-fasting-what-is-it-and-how-does-it-work/" target="_blank" rel="noopener">Johns Hopkins Medicine：間歇性斷食問答</a>。</p></article></section>
+
+    <section id="recipes"><div class="section-heading"><div><h2>24 道正餐食譜</h2><p>點開食譜看食材與步驟；可以搜尋或依主蛋白篩選。</p></div></div><div class="recipe-toolbar"><input type="search" id="recipe-search" placeholder="搜尋食材、調味或菜名…" aria-label="搜尋食譜"><button class="filter" data-filter="全部" aria-pressed="true">全部</button><button class="filter" data-filter="雞胸" aria-pressed="false">雞胸</button><button class="filter" data-filter="鮭魚" aria-pressed="false">鮭魚</button><button class="filter" data-filter="蝦仁" aria-pressed="false">蝦仁</button><button class="filter" data-filter="蛋／毛豆" aria-pressed="false">蛋／毛豆</button></div><div class="recipe-grid" id="recipe-grid"><details class="recipe" data-category="雞胸" data-search="r1 蒜香雞胸馬鈴薯彩椒盤 **食材**：雞胸 200 g、馬鈴薯 350 g、彩椒 120 g、洋蔥 80 g、油共 10 g；蒜粉、黑胡椒、義式香料及少量鹽。
+
+**步驟**：馬鈴薯擦乾切約 2 cm 塊、拌油 5 g，190°c 烤 20–30 分，中途翻面。雞胸整理至約 2 cm 厚並調味，180°c 烤約 12–18 分；第 12 分起測最厚處，至中心 74°c。彩椒與洋蔥拌剩餘油，另盤 180–190°c 烤約 10–15 分。各項依熟度先後取出。"><summary><span class="recipe-number">01</span><span>蒜香雞胸馬鈴薯彩椒盤</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸 200 g、馬鈴薯 350 g、彩椒 120 g、洋蔥 80 g、油共 10 g；蒜粉、黑胡椒、義式香料及少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯擦乾切約 2 cm 塊、拌油 5 g，190°C 烤 20–30 分，中途翻面。雞胸整理至約 2 cm 厚並調味，180°C 烤約 12–18 分；第 12 分起測最厚處，至中心 74°C。彩椒與洋蔥拌剩餘油，另盤 180–190°C 烤約 10–15 分。各項依熟度先後取出。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r2 紅椒雞胸地瓜烤菇盤 **食材**：雞胸 200 g、地瓜 250 g、杏鮑菇／蘑菇 150 g、洋蔥 50 g、油共 10 g；紅椒粉、蒜粉、黑胡椒。
+
+**步驟**：地瓜切約 2 cm 塊拌一半油，190°c 烤約 18–25 分；雞胸整理至約 2 cm 厚並調味，180°c 烤約 12–18 分，第 12 分起測最厚處至中心 74°c。菇與洋蔥拌剩餘油，另盤 180–190°c 烤約 8–15 分，避免菇類水分浸濕地瓜。"><summary><span class="recipe-number">02</span><span>紅椒雞胸地瓜烤菇盤</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸 200 g、地瓜 250 g、杏鮑菇／蘑菇 150 g、洋蔥 50 g、油共 10 g；紅椒粉、蒜粉、黑胡椒。</p>
+<p><strong>步驟</strong>：地瓜切約 2 cm 塊拌一半油，190°C 烤約 18–25 分；雞胸整理至約 2 cm 厚並調味，180°C 烤約 12–18 分，第 12 分起測最厚處至中心 74°C。菇與洋蔥拌剩餘油，另盤 180–190°C 烤約 8–15 分，避免菇類水分浸濕地瓜。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r3 檸檬鮭魚馬鈴薯櫛瓜盤 **食材**：鮭魚 180–200 g、馬鈴薯 350 g、櫛瓜 150 g、洋蔥 50 g、油共 5 g；蒜粉、黑胡椒、檸檬汁。
+
+**步驟**：馬鈴薯切約 2 cm 塊，190°c 烤約 20–30 分至叉子易穿透。已解凍、厚約 2–3 cm 的鮭魚 180°c 烤約 8–12 分，第 8 分起測最厚處至中心 63°c；櫛瓜與洋蔥另盤 180–190°c 烤約 10–15 分。油共 5 g，分給薯類與蔬菜；出爐後擠檸檬汁。"><summary><span class="recipe-number">03</span><span>檸檬鮭魚馬鈴薯櫛瓜盤</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚 180–200 g、馬鈴薯 350 g、櫛瓜 150 g、洋蔥 50 g、油共 5 g；蒜粉、黑胡椒、檸檬汁。</p>
+<p><strong>步驟</strong>：馬鈴薯切約 2 cm 塊，190°C 烤約 20–30 分至叉子易穿透。已解凍、厚約 2–3 cm 的鮭魚 180°C 烤約 8–12 分，第 8 分起測最厚處至中心 63°C；櫛瓜與洋蔥另盤 180–190°C 烤約 10–15 分。油共 5 g，分給薯類與蔬菜；出爐後擠檸檬汁。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r4 蒜香黑胡椒鮭魚地瓜花椰菜盤 **食材**：鮭魚 180–200 g、地瓜 250 g、冷凍花椰菜 200 g、油共 5 g；蒜粉、黑胡椒、少量鹽。
+
+**步驟**（instant vortex pro，選 **air fry**；每批依機器提示預熱完成後再放入）：
+
+- 地瓜切約 2 cm 塊，拌一部分油，**190°c 烤約 18–25 分鐘**，中途翻動，烤到叉子能輕鬆穿透後取出。
+- 鮭魚先在冷藏解凍、擦乾；此時間以**厚約 2–3 cm 的魚排**為起點。撒蒜粉、黑胡椒與少量鹽，放入已預熱的烤籃，**180°c 烤約 8–12 分鐘**。第 8 分鐘起用食物溫度計量最厚處；未達 **63°c** 就每次續烤約 1–2 分鐘再測，達標取出。魚排更厚或尚未完全解凍時，時間需增加，以中心溫度為準。
+- 冷凍花椰菜去除鬆散冰霜、拌剩餘的油，**190°c 烤約 10–15 分鐘**，中途翻動；依包裝熟食指示調整。油共 5 g，分給地瓜與花椰菜，不各用 5 g。"><summary><span class="recipe-number">04</span><span>蒜香黑胡椒鮭魚地瓜花椰菜盤</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚 180–200 g、地瓜 250 g、冷凍花椰菜 200 g、油共 5 g；蒜粉、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>（Instant Vortex Pro，選 <strong>Air Fry</strong>；每批依機器提示預熱完成後再放入）：</p>
+<ul>
+<li>地瓜切約 2 cm 塊，拌一部分油，<strong>190°C 烤約 18–25 分鐘</strong>，中途翻動，烤到叉子能輕鬆穿透後取出。</li>
+<li>鮭魚先在冷藏解凍、擦乾；此時間以<strong>厚約 2–3 cm 的魚排</strong>為起點。撒蒜粉、黑胡椒與少量鹽，放入已預熱的烤籃，<strong>180°C 烤約 8–12 分鐘</strong>。第 8 分鐘起用食物溫度計量最厚處；未達 <strong>63°C</strong> 就每次續烤約 1–2 分鐘再測，達標取出。魚排更厚或尚未完全解凍時，時間需增加，以中心溫度為準。</li>
+<li>冷凍花椰菜去除鬆散冰霜、拌剩餘的油，<strong>190°C 烤約 10–15 分鐘</strong>，中途翻動；依包裝熟食指示調整。油共 5 g，分給地瓜與花椰菜，不各用 5 g。</li>
+</ul></div></details>
+<details class="recipe" data-category="蝦仁" data-search="r5 蒜香蝦仁毛豆馬鈴薯盤 **食材**：生蝦仁解凍瀝乾 200 g、去殼毛豆 100 g、馬鈴薯 350 g、彩椒 100 g、櫛瓜 100 g、油共 10 g；蒜粉、黑胡椒、檸檬。
+
+**步驟**：馬鈴薯切約 2 cm 塊，190°c 烤約 20–30 分至叉子易穿透；彩椒與櫛瓜另盤 180–190°c 烤約 10–15 分。毛豆依包裝煮熟／復熱。已解凍的蝦仁擦乾、拌少量油與蒜粉，180°c 烤約 6–10 分；第 6 分起檢查至中心 63°c，完成後與毛豆、蔬菜拌合。油共 10 g 分配給各批，不另加；蝦不要從薯類開始烤時就放入。"><summary><span class="recipe-number">05</span><span>蒜香蝦仁毛豆馬鈴薯盤</span><span class="badge">蝦仁</span></summary><div class="recipe-body"><p><strong>食材</strong>：生蝦仁解凍瀝乾 200 g、去殼毛豆 100 g、馬鈴薯 350 g、彩椒 100 g、櫛瓜 100 g、油共 10 g；蒜粉、黑胡椒、檸檬。</p>
+<p><strong>步驟</strong>：馬鈴薯切約 2 cm 塊，190°C 烤約 20–30 分至叉子易穿透；彩椒與櫛瓜另盤 180–190°C 烤約 10–15 分。毛豆依包裝煮熟／復熱。已解凍的蝦仁擦乾、拌少量油與蒜粉，180°C 烤約 6–10 分；第 6 分起檢查至中心 63°C，完成後與毛豆、蔬菜拌合。油共 10 g 分配給各批，不另加；蝦不要從薯類開始烤時就放入。</p></div></details>
+<details class="recipe" data-category="蛋／毛豆" data-search="r6 雞蛋毛豆烤蔬菜配地瓜 **食材**：雞蛋 3 顆、去殼毛豆 150 g、地瓜 250 g、蘑菇 100 g、彩椒 80 g、洋蔥 20 g、油共 5 g。
+
+**步驟**：地瓜切約 2 cm 塊，air fry 190°c 烤約 18–25 分至叉子易穿透；毛豆依包裝加熱。菇、彩椒與洋蔥先用 air fry 180–190°c 烤約 8–15 分至水分略收，拌入蛋液與毛豆，放機器可用的耐熱淺烤皿，bake 170°c 約 15–25 分，依厚度調整，中心至少 71°c 且蛋液凝固。搭地瓜食用。這份脂肪較高，當天其他餐少加油，蛋白質按實際份量記錄。"><summary><span class="recipe-number">06</span><span>雞蛋毛豆烤蔬菜配地瓜</span><span class="badge">蛋／毛豆</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞蛋 3 顆、去殼毛豆 150 g、地瓜 250 g、蘑菇 100 g、彩椒 80 g、洋蔥 20 g、油共 5 g。</p>
+<p><strong>步驟</strong>：地瓜切約 2 cm 塊，Air Fry 190°C 烤約 18–25 分至叉子易穿透；毛豆依包裝加熱。菇、彩椒與洋蔥先用 Air Fry 180–190°C 烤約 8–15 分至水分略收，拌入蛋液與毛豆，放機器可用的耐熱淺烤皿，Bake 170°C 約 15–25 分，依厚度調整，中心至少 71°C 且蛋液凝固。搭地瓜食用。這份脂肪較高，當天其他餐少加油，蛋白質按實際份量記錄。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r7 咖哩雞胸地瓜盤 **食材**：雞胸 200 g、地瓜 250 g、花椰菜 150 g、洋蔥 50 g、油共 10 g；咖哩粉 1 茶匙、蒜粉、少量鹽。
+
+**步驟**：地瓜切約 2 cm 塊、拌油 5 g，air fry 190°c 約 18–25 分，中途翻動。雞胸整理至約 2 cm 厚，抹咖哩粉及調味，180°c 約 12–18 分；第 12 分起測最厚處至中心 74°c。花椰菜、洋蔥拌剩餘油，另盤 190°c 約 10–15 分。使用純咖哩粉，不必買咖哩塊。"><summary><span class="recipe-number">07</span><span>咖哩雞胸地瓜盤</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸 200 g、地瓜 250 g、花椰菜 150 g、洋蔥 50 g、油共 10 g；咖哩粉 1 茶匙、蒜粉、少量鹽。</p>
+<p><strong>步驟</strong>：地瓜切約 2 cm 塊、拌油 5 g，Air Fry 190°C 約 18–25 分，中途翻動。雞胸整理至約 2 cm 厚，抹咖哩粉及調味，180°C 約 12–18 分；第 12 分起測最厚處至中心 74°C。花椰菜、洋蔥拌剩餘油，另盤 190°C 約 10–15 分。使用純咖哩粉，不必買咖哩塊。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r8 孜然雞肉彩椒盤 **食材**：雞胸 200 g、馬鈴薯 350 g、彩椒 120 g、洋蔥 80 g、油共 10 g；孜然粉及紅椒粉各 ½ 茶匙、黑胡椒、少量鹽。
+
+**步驟**：馬鈴薯切塊拌油 5 g，190°c 約 20–30 分。雞胸切約 2.5 cm 塊，彩椒、洋蔥切相近大小，拌剩餘油與調味，分盤排開，180°c 約 10–16 分，中途翻面，最大雞肉塊中心達 74°c。可用合適金屬烤串、食材間留縫，但不串也能做。"><summary><span class="recipe-number">08</span><span>孜然雞肉彩椒盤</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸 200 g、馬鈴薯 350 g、彩椒 120 g、洋蔥 80 g、油共 10 g；孜然粉及紅椒粉各 ½ 茶匙、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯切塊拌油 5 g，190°C 約 20–30 分。雞胸切約 2.5 cm 塊，彩椒、洋蔥切相近大小，拌剩餘油與調味，分盤排開，180°C 約 10–16 分，中途翻面，最大雞肉塊中心達 74°C。可用合適金屬烤串、食材間留縫，但不串也能做。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r9 芥末檸檬鮭魚與壓烤馬鈴薯 **食材**：鮭魚 180–200 g、小馬鈴薯 350 g、櫛瓜 150 g、蘑菇 100 g、油共 5 g；dijon mustard 1–2 茶匙、檸檬汁、黑胡椒。
+
+**步驟**：馬鈴薯先蒸／煮軟瀝乾，用叉子壓至約 1.5 cm 厚，薄刷部分油，air fry 200°c 約 12–18 分至金黃。已解凍、厚約 2–3 cm 的鮭魚抹芥末、少量檸檬汁及黑胡椒，180°c 約 8–12 分，第 8 分起測最厚處至中心 63°c。櫛瓜、菇拌剩餘油，另盤 190°c 約 10–15 分。dijon mustard 為額外調味選項，非已購確認。"><summary><span class="recipe-number">09</span><span>芥末檸檬鮭魚與壓烤馬鈴薯</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚 180–200 g、小馬鈴薯 350 g、櫛瓜 150 g、蘑菇 100 g、油共 5 g；Dijon mustard 1–2 茶匙、檸檬汁、黑胡椒。</p>
+<p><strong>步驟</strong>：馬鈴薯先蒸／煮軟瀝乾，用叉子壓至約 1.5 cm 厚，薄刷部分油，Air Fry 200°C 約 12–18 分至金黃。已解凍、厚約 2–3 cm 的鮭魚抹芥末、少量檸檬汁及黑胡椒，180°C 約 8–12 分，第 8 分起測最厚處至中心 63°C。櫛瓜、菇拌剩餘油，另盤 190°C 約 10–15 分。Dijon mustard 為額外調味選項，非已購確認。</p></div></details>
+<details class="recipe" data-category="蝦仁" data-search="r10 蒜香蝦仁烤地瓜船 **食材**：蝦仁 200 g、地瓜 250–300 g、毛豆 100 g、彩椒 100 g、洋蔥 50 g、油共 10 g；蒜粉、黑胡椒、檸檬汁。
+
+**步驟**：地瓜縱切兩半，切面薄刷油，180°c 約 25–40 分至叉子易穿透，依粗細調整。毛豆按包裝加熱；彩椒、洋蔥切丁拌部分油，另盤 180–190°c 烤約 10–15 分。已解凍的蝦仁擦乾拌剩餘油與調味，180°c 烤約 6–10 分，第 6 分起檢查至中心 63°c。地瓜中心用叉子壓鬆，放上蝦、毛豆、蔬菜，擠檸檬汁。不挖掉地瓜肉。"><summary><span class="recipe-number">10</span><span> 蒜香蝦仁烤地瓜船</span><span class="badge">蝦仁</span></summary><div class="recipe-body"><p><strong>食材</strong>：蝦仁 200 g、地瓜 250–300 g、毛豆 100 g、彩椒 100 g、洋蔥 50 g、油共 10 g；蒜粉、黑胡椒、檸檬汁。</p>
+<p><strong>步驟</strong>：地瓜縱切兩半，切面薄刷油，180°C 約 25–40 分至叉子易穿透，依粗細調整。毛豆按包裝加熱；彩椒、洋蔥切丁拌部分油，另盤 180–190°C 烤約 10–15 分。已解凍的蝦仁擦乾拌剩餘油與調味，180°C 烤約 6–10 分，第 6 分起檢查至中心 63°C。地瓜中心用叉子壓鬆，放上蝦、毛豆、蔬菜，擠檸檬汁。不挖掉地瓜肉。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r11 雞胸毛豆填餡彩椒與薯角 **食材**：雞胸 180 g、毛豆 100 g、馬鈴薯 300 g、大彩椒 1 顆（約 180–200 g）、蘑菇 80 g、洋蔥 40 g、油共 10 g；義式香料、蒜粉、黑胡椒、少量鹽。
+
+**步驟**：馬鈴薯切薯角拌部分油，190°c 烤約 20–30 分。雞胸整理至約 2 cm 厚，180°c 烤約 12–18 分，第 12 分起測最厚處至中心 74°c 後切丁；毛豆按包裝加熱。菇、洋蔥切丁，拌剩餘油另盤 180–190°c 烤約 8–15 分至略收水。彩椒對半去籽，180°c 先烤 6–8 分，填入熟雞肉、毛豆及蔬菜，再烤 5–8 分至喜歡的軟度。使用熟餡組裝，不塞生雞肉。"><summary><span class="recipe-number">11</span><span> 雞胸毛豆填餡彩椒與薯角</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸 180 g、毛豆 100 g、馬鈴薯 300 g、大彩椒 1 顆（約 180–200 g）、蘑菇 80 g、洋蔥 40 g、油共 10 g；義式香料、蒜粉、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯切薯角拌部分油，190°C 烤約 20–30 分。雞胸整理至約 2 cm 厚，180°C 烤約 12–18 分，第 12 分起測最厚處至中心 74°C 後切丁；毛豆按包裝加熱。菇、洋蔥切丁，拌剩餘油另盤 180–190°C 烤約 8–15 分至略收水。彩椒對半去籽，180°C 先烤 6–8 分，填入熟雞肉、毛豆及蔬菜，再烤 5–8 分至喜歡的軟度。使用熟餡組裝，不塞生雞肉。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r12 薑醬油鮭魚菇菇烤皿與地瓜 **食材**：鮭魚 180–200 g、地瓜 250 g、菇類 150 g、櫛瓜 100 g、洋蔥 50 g、油共 5 g；醬油1–2 茶匙、薑末1 茶匙、水1 湯匙。
+
+**步驟**：地瓜切塊拌油，190°c 約18–25 分。菇、櫛瓜、洋蔥切薄片，放耐熱淺烤皿，加醬油、薑末和水，bake 180°c 先烤8–10 分。鮭魚放蔬菜上，再烤約10–15 分至中心63°c。盛盤搭少量烤皿湯汁。醬油、薑為額外調味選項。"><summary><span class="recipe-number">12</span><span> 薑醬油鮭魚菇菇烤皿與地瓜</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚 180–200 g、地瓜 250 g、菇類 150 g、櫛瓜 100 g、洋蔥 50 g、油共 5 g；醬油1–2 茶匙、薑末1 茶匙、水1 湯匙。</p>
+<p><strong>步驟</strong>：地瓜切塊拌油，190°C 約18–25 分。菇、櫛瓜、洋蔥切薄片，放耐熱淺烤皿，加醬油、薑末和水，Bake 180°C 先烤8–10 分。鮭魚放蔬菜上，再烤約10–15 分至中心63°C。盛盤搭少量烤皿湯汁。醬油、薑為額外調味選項。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r13 洋蔥蘑菇雞肉餅與地瓜 **食材**：雞胸200 g、洋蔥50 g、蘑菇80 g、地瓜250 g、花椰菜150 g、油共10 g；蒜粉、黑胡椒、少量鹽。
+
+**步驟**：洋蔥、菇切細丁，拌少量油 180°c 約 8–12 分至略收水，放涼。雞胸用刀剁細，拌入熟蔬菜及調味，捏三個約 1.5 cm 厚的肉餅，薄刷油，180°c 約 12–16 分，中途翻面，中心 74°c。地瓜切約 2 cm 塊 190°c 約 18–25 分；花椰菜另盤 190°c 約 10–15 分，分配剩餘油。**不需要調理機；不想剁肉就切約 2 cm 雞丁，改做洋蔥蘑菇雞丁，180°c 約 10–16 分，第 10 分起測最厚塊至中心 74°c。**"><summary><span class="recipe-number">13</span><span> 洋蔥蘑菇雞肉餅與地瓜</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸200 g、洋蔥50 g、蘑菇80 g、地瓜250 g、花椰菜150 g、油共10 g；蒜粉、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：洋蔥、菇切細丁，拌少量油 180°C 約 8–12 分至略收水，放涼。雞胸用刀剁細，拌入熟蔬菜及調味，捏三個約 1.5 cm 厚的肉餅，薄刷油，180°C 約 12–16 分，中途翻面，中心 74°C。地瓜切約 2 cm 塊 190°C 約 18–25 分；花椰菜另盤 190°C 約 10–15 分，分配剩餘油。<strong>不需要調理機；不想剁肉就切約 2 cm 雞丁，改做洋蔥蘑菇雞丁，180°C 約 10–16 分，第 10 分起測最厚塊至中心 74°C。</strong></p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r14 番茄紅椒雞胸烤皿與馬鈴薯 **食材**：雞胸200 g、馬鈴薯350 g、無加糖番茄泥150 g、彩椒100 g、洋蔥50 g、油共10 g；紅椒粉、蒜粉、義式香料、少量鹽。
+
+**步驟**：馬鈴薯切塊拌油5 g，190°c 約20–30 分。彩椒、洋蔥切小塊放耐熱淺烤皿，拌剩餘油，bake 180°c 先烤8 分。加入番茄泥、調味及約2 cm雞丁，拌開不堆厚，再烤約18–25 分，中途攪拌，最大雞肉塊中心74°c。薯塊沾醬汁吃。需另備番茄泥或切丁番茄罐頭。"><summary><span class="recipe-number">14</span><span> 番茄紅椒雞胸烤皿與馬鈴薯</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸200 g、馬鈴薯350 g、無加糖番茄泥150 g、彩椒100 g、洋蔥50 g、油共10 g；紅椒粉、蒜粉、義式香料、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯切塊拌油5 g，190°C 約20–30 分。彩椒、洋蔥切小塊放耐熱淺烤皿，拌剩餘油，Bake 180°C 先烤8 分。加入番茄泥、調味及約2 cm雞丁，拌開不堆厚，再烤約18–25 分，中途攪拌，最大雞肉塊中心74°C。薯塊沾醬汁吃。需另備番茄泥或切丁番茄罐頭。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r15 鮭魚蘑菇薯泥派 **食材**：鮭魚180 g、馬鈴薯350 g、蘑菇100 g、洋蔥50 g、櫛瓜100 g、無糖豆漿40–60 ml、油共5 g；黑胡椒、蒜粉、少量鹽。
+
+**步驟**：馬鈴薯蒸／煮軟，用叉子壓泥，逐量加豆漿與鹽，保持濃稠，允許留顆粒。蔬菜切丁拌油用 air fry 180–190°c 烤約 8–15 分至略收水。鮭魚切約 2 cm 塊，與蔬菜放耐熱淺烤皿，鋪約 1–1.5 cm 厚薯泥，用叉子劃紋。bake 180°c 約 20–30 分，從第 20 分起測中央鮭魚至 63°c；需要上色可最後短時間提高溫度並看著烤。"><summary><span class="recipe-number">15</span><span> 鮭魚蘑菇薯泥派</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚180 g、馬鈴薯350 g、蘑菇100 g、洋蔥50 g、櫛瓜100 g、無糖豆漿40–60 ml、油共5 g；黑胡椒、蒜粉、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯蒸／煮軟，用叉子壓泥，逐量加豆漿與鹽，保持濃稠，允許留顆粒。蔬菜切丁拌油用 Air Fry 180–190°C 烤約 8–15 分至略收水。鮭魚切約 2 cm 塊，與蔬菜放耐熱淺烤皿，鋪約 1–1.5 cm 厚薯泥，用叉子劃紋。Bake 180°C 約 20–30 分，從第 20 分起測中央鮭魚至 63°C；需要上色可最後短時間提高溫度並看著烤。</p></div></details>
+<details class="recipe" data-category="蝦仁" data-search="r16 蝦仁毛豆烘蛋與香料薯角 **食材**：蝦仁150 g、雞蛋2顆、毛豆80 g、馬鈴薯300 g、彩椒100 g、洋蔥50 g、油共10 g；黑胡椒、義式香料、少量鹽。
+
+**步驟**：薯角拌一半油，air fry 190°c 約 20–30 分。彩椒、洋蔥先用 air fry 180–190°c 烤約 10–15 分至軟，毛豆按包裝加熱。蛋用叉子打散，加入已解凍蝦仁、毛豆、蔬菜及調味。耐熱淺烤皿薄刷剩餘油，倒入混合物、不鋪太厚，bake 170°c 約 18–25 分，中心 71°c、蛋液凝固且蝦熟透。"><summary><span class="recipe-number">16</span><span> 蝦仁毛豆烘蛋與香料薯角</span><span class="badge">蝦仁</span></summary><div class="recipe-body"><p><strong>食材</strong>：蝦仁150 g、雞蛋2顆、毛豆80 g、馬鈴薯300 g、彩椒100 g、洋蔥50 g、油共10 g；黑胡椒、義式香料、少量鹽。</p>
+<p><strong>步驟</strong>：薯角拌一半油，Air Fry 190°C 約 20–30 分。彩椒、洋蔥先用 Air Fry 180–190°C 烤約 10–15 分至軟，毛豆按包裝加熱。蛋用叉子打散，加入已解凍蝦仁、毛豆、蔬菜及調味。耐熱淺烤皿薄刷剩餘油，倒入混合物、不鋪太厚，Bake 170°C 約 18–25 分，中心 71°C、蛋液凝固且蝦熟透。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r17 迷迭香雞胸暖薯沙拉 **食材**：雞胸200 g、馬鈴薯300 g、毛豆80 g、櫛瓜100 g、洋蔥50 g、油共10 g；迷迭香或義式香料、黑胡椒、少量鹽、檸檬汁1–2 茶匙。
+
+**步驟**：馬鈴薯切約 2 cm 塊，拌部分油、香料及鹽，190°c 約 20–30 分。雞胸整理至約 2 cm 厚並調味，180°c 約 12–18 分，第 12 分起測最厚處至中心 74°c。櫛瓜、洋蔥拌部分油另盤 180–190°c 烤約 10–15 分；毛豆按包裝加熱。熟雞胸切片，與溫熱薯塊、蔬菜、毛豆拌合，剩餘油加檸檬汁及黑胡椒作醬。油總量仍為 10 g。"><summary><span class="recipe-number">17</span><span> 迷迭香雞胸暖薯沙拉</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸200 g、馬鈴薯300 g、毛豆80 g、櫛瓜100 g、洋蔥50 g、油共10 g；迷迭香或義式香料、黑胡椒、少量鹽、檸檬汁1–2 茶匙。</p>
+<p><strong>步驟</strong>：馬鈴薯切約 2 cm 塊，拌部分油、香料及鹽，190°C 約 20–30 分。雞胸整理至約 2 cm 厚並調味，180°C 約 12–18 分，第 12 分起測最厚處至中心 74°C。櫛瓜、洋蔥拌部分油另盤 180–190°C 烤約 10–15 分；毛豆按包裝加熱。熟雞胸切片，與溫熱薯塊、蔬菜、毛豆拌合，剩餘油加檸檬汁及黑胡椒作醬。油總量仍為 10 g。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r18 黑胡椒鮭魚地瓜餅與烤彩椒 **食材**：鮭魚180 g、地瓜250 g、雞蛋1顆、彩椒120 g、蘑菇100 g、油共5 g；蒜粉、黑胡椒、少量鹽、檸檬汁。
+
+**步驟**：地瓜切約 2 cm 塊，用 air fry 190°c 約 18–25 分至叉子易穿透，或蒸至軟；用叉子壓泥、放涼散水。鮭魚去皮去刺，用刀切碎，拌入地瓜泥及調味，蛋液分次加避免過稀。捏四個約 1.5 cm 厚小餅，太軟可冷藏 15–20 分。合適烤盤薄刷油，air fry 180°c 約 15–20 分，表面定型再翻，含蛋餅體中心 71°c。彩椒、菇拌剩餘油另盤 190°c 約 10–15 分，出爐擠檸檬汁。"><summary><span class="recipe-number">18</span><span> 黑胡椒鮭魚地瓜餅與烤彩椒</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚180 g、地瓜250 g、雞蛋1顆、彩椒120 g、蘑菇100 g、油共5 g；蒜粉、黑胡椒、少量鹽、檸檬汁。</p>
+<p><strong>步驟</strong>：地瓜切約 2 cm 塊，用 Air Fry 190°C 約 18–25 分至叉子易穿透，或蒸至軟；用叉子壓泥、放涼散水。鮭魚去皮去刺，用刀切碎，拌入地瓜泥及調味，蛋液分次加避免過稀。捏四個約 1.5 cm 厚小餅，太軟可冷藏 15–20 分。合適烤盤薄刷油，Air Fry 180°C 約 15–20 分，表面定型再翻，含蛋餅體中心 71°C。彩椒、菇拌剩餘油另盤 190°C 約 10–15 分，出爐擠檸檬汁。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r19 檸檬蒜香雞柳與地瓜條 **食材**：雞胸200 g、地瓜250 g、櫛瓜150 g、洋蔥50 g、油共10 g；蒜粉、黑胡椒、少量鹽、檸檬汁。
+
+**步驟**：地瓜切約1.5 cm粗條，拌油5 g，190°c 約18–25 分，中途翻動。雞胸切約2 cm粗條，拌少量油及調味，180°c 約10–15 分至最厚處74°c。櫛瓜厚片、洋蔥塊拌剩餘油，另盤190°c 約10–15 分，出爐擠檸檬汁。"><summary><span class="recipe-number">19</span><span> 檸檬蒜香雞柳與地瓜條</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸200 g、地瓜250 g、櫛瓜150 g、洋蔥50 g、油共10 g；蒜粉、黑胡椒、少量鹽、檸檬汁。</p>
+<p><strong>步驟</strong>：地瓜切約1.5 cm粗條，拌油5 g，190°C 約18–25 分，中途翻動。雞胸切約2 cm粗條，拌少量油及調味，180°C 約10–15 分至最厚處74°C。櫛瓜厚片、洋蔥塊拌剩餘油，另盤190°C 約10–15 分，出爐擠檸檬汁。</p></div></details>
+<details class="recipe" data-category="雞胸" data-search="r20 香料雞胸薯片疊烤 **食材**：雞胸200 g、馬鈴薯350 g、洋蔥80 g、蘑菇120 g、油共10 g；義式香料、蒜粉、黑胡椒、少量鹽、水2湯匙。
+
+**步驟**：馬鈴薯切約3 mm薄片、洋蔥切絲、菇切片。耐熱淺烤皿刷部分油，放薯片、洋蔥、調味及水，不鋪太厚。bake 180°c 先烤20–25 分，中途翻拌，確認薯片開始變軟。雞胸切約1.5–2 cm厚片，拌剩餘油及香料，與菇放在薯片上，再烤約15–20 分至雞肉74°c、薯片軟透。此為濕潤烤皿，不追求薯片酥脆。"><summary><span class="recipe-number">20</span><span> 香料雞胸薯片疊烤</span><span class="badge">雞胸</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞胸200 g、馬鈴薯350 g、洋蔥80 g、蘑菇120 g、油共10 g；義式香料、蒜粉、黑胡椒、少量鹽、水2湯匙。</p>
+<p><strong>步驟</strong>：馬鈴薯切約3 mm薄片、洋蔥切絲、菇切片。耐熱淺烤皿刷部分油，放薯片、洋蔥、調味及水，不鋪太厚。Bake 180°C 先烤20–25 分，中途翻拌，確認薯片開始變軟。雞胸切約1.5–2 cm厚片，拌剩餘油及香料，與菇放在薯片上，再烤約15–20 分至雞肉74°C、薯片軟透。此為濕潤烤皿，不追求薯片酥脆。</p></div></details>
+<details class="recipe" data-category="蝦仁" data-search="r21 咖哩蝦仁花椰菜與馬鈴薯 **食材**：蝦仁200 g、馬鈴薯350 g、花椰菜150 g、彩椒100 g、油共10 g；咖哩粉1茶匙、蒜粉、少量鹽。
+
+**步驟**：馬鈴薯切約2 cm塊，拌油5 g及一半咖哩粉，190°c 約20–30 分。花椰菜、彩椒拌部分油及調味，另盤190°c 約10–15 分。蝦仁擦乾，拌剩餘油、咖哩粉及蒜粉，180°c 約6–10 分至中心63°c。蝦仁最後烤，不需另加咖哩醬。"><summary><span class="recipe-number">21</span><span> 咖哩蝦仁花椰菜與馬鈴薯</span><span class="badge">蝦仁</span></summary><div class="recipe-body"><p><strong>食材</strong>：蝦仁200 g、馬鈴薯350 g、花椰菜150 g、彩椒100 g、油共10 g；咖哩粉1茶匙、蒜粉、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯切約2 cm塊，拌油5 g及一半咖哩粉，190°C 約20–30 分。花椰菜、彩椒拌部分油及調味，另盤190°C 約10–15 分。蝦仁擦乾，拌剩餘油、咖哩粉及蒜粉，180°C 約6–10 分至中心63°C。蝦仁最後烤，不需另加咖哩醬。</p></div></details>
+<details class="recipe" data-category="蝦仁" data-search="r22 彩椒蝦仁鑲蘑菇與地瓜 **食材**：蝦仁200 g、大型蘑菇約200 g、彩椒80 g、洋蔥40 g、地瓜250 g、油共10 g；蒜粉、黑胡椒、少量鹽。
+
+**步驟**：地瓜切約 2 cm 塊拌部分油，190°c 約 18–25 分。蘑菇去梗，菇梗、彩椒、洋蔥切細丁，另盤 180–190°c 烤約 8–15 分至軟。已解凍蝦仁用刀切丁，拌熟蔬菜及調味。菇傘外側刷剩餘油，凹面填餡、不堆太厚，180°c 約 10–15 分至餡中央 63°c。只有小蘑菇時全部切塊，與蝦仁改放耐熱淺烤皿，以 bake 180°c 約 10–15 分，從第 10 分起測餡中央至 63°c。"><summary><span class="recipe-number">22</span><span> 彩椒蝦仁鑲蘑菇與地瓜</span><span class="badge">蝦仁</span></summary><div class="recipe-body"><p><strong>食材</strong>：蝦仁200 g、大型蘑菇約200 g、彩椒80 g、洋蔥40 g、地瓜250 g、油共10 g；蒜粉、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：地瓜切約 2 cm 塊拌部分油，190°C 約 18–25 分。蘑菇去梗，菇梗、彩椒、洋蔥切細丁，另盤 180–190°C 烤約 8–15 分至軟。已解凍蝦仁用刀切丁，拌熟蔬菜及調味。菇傘外側刷剩餘油，凹面填餡、不堆太厚，180°C 約 10–15 分至餡中央 63°C。只有小蘑菇時全部切塊，與蝦仁改放耐熱淺烤皿，以 Bake 180°C 約 10–15 分，從第 10 分起測餡中央至 63°C。</p></div></details>
+<details class="recipe" data-category="鮭魚" data-search="r23 番茄鮭魚蔬菜烤皿與薯角 **食材**：鮭魚180–200 g、馬鈴薯350 g、無加糖番茄泥150 g、櫛瓜100 g、洋蔥50 g、油共5 g；義式香料、蒜粉、黑胡椒、少量鹽。
+
+**步驟**：薯角拌油，190°c 約20–30 分。櫛瓜、洋蔥切薄片，與番茄泥、香料拌入耐熱淺烤皿，bake 180°c 先烤10 分。放入鮭魚，再烤約10–15 分至中心63°c。薯角搭番茄醬汁吃。需另備番茄泥或切丁番茄罐頭。"><summary><span class="recipe-number">23</span><span> 番茄鮭魚蔬菜烤皿與薯角</span><span class="badge">鮭魚</span></summary><div class="recipe-body"><p><strong>食材</strong>：鮭魚180–200 g、馬鈴薯350 g、無加糖番茄泥150 g、櫛瓜100 g、洋蔥50 g、油共5 g；義式香料、蒜粉、黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：薯角拌油，190°C 約20–30 分。櫛瓜、洋蔥切薄片，與番茄泥、香料拌入耐熱淺烤皿，Bake 180°C 先烤10 分。放入鮭魚，再烤約10–15 分至中心63°C。薯角搭番茄醬汁吃。需另備番茄泥或切丁番茄罐頭。</p></div></details>
+<details class="recipe" data-category="蛋／毛豆" data-search="r24 馬鈴薯毛豆烘蛋 **食材**：雞蛋3顆、毛豆150 g、馬鈴薯300 g、洋蔥50 g、彩椒100 g、無糖豆漿30 ml、油共5 g；黑胡椒、少量鹽。
+
+**步驟**：馬鈴薯切約 1 cm 丁，拌部分油，air fry 190°c 約 15–20 分至軟，中途翻動。洋蔥、彩椒切丁另盤 air fry 180–190°c 烤約 10–15 分至軟，毛豆按包裝加熱。用叉子打蛋，加入豆漿、調味與其餘食材。耐熱淺烤皿薄刷剩餘油，倒入混合物，厚度盡量不超過約 3 cm。bake 170°c 約 20–30 分至中心 71°c、蛋液凝固，不另加一份地瓜。"><summary><span class="recipe-number">24</span><span> 馬鈴薯毛豆烘蛋</span><span class="badge">蛋／毛豆</span></summary><div class="recipe-body"><p><strong>食材</strong>：雞蛋3顆、毛豆150 g、馬鈴薯300 g、洋蔥50 g、彩椒100 g、無糖豆漿30 ml、油共5 g；黑胡椒、少量鹽。</p>
+<p><strong>步驟</strong>：馬鈴薯切約 1 cm 丁，拌部分油，Air Fry 190°C 約 15–20 分至軟，中途翻動。洋蔥、彩椒切丁另盤 Air Fry 180–190°C 烤約 10–15 分至軟，毛豆按包裝加熱。用叉子打蛋，加入豆漿、調味與其餘食材。耐熱淺烤皿薄刷剩餘油，倒入混合物，厚度盡量不超過約 3 cm。Bake 170°C 約 20–30 分至中心 71°C、蛋液凝固，不另加一份地瓜。</p></div></details></div><p class="empty" id="recipe-empty" hidden>沒有符合的食譜，試試其他關鍵字。</p><div class="grid two" style="margin-top:16px"><article class="panel"><h2>食譜使用方式</h2><ul>
+<li>R7–R24 是替換午晚餐的選項，替換原 R1–R6，並非在原餐單上額外加餐；配方熱量及蛋白質不同，不視為等量代換。</li>
+<li>額外採買選項：咖哩粉、孜然粉、Dijon mustard、薑、醬油、迷迭香、無加糖番茄泥／切丁番茄罐頭；尚非已購確認。</li>
+<li>薯泥用叉子壓，肉餅用刀剁／切碎；不安排調理機。需先蒸煮的薯類也可先用烤箱烤軟再壓，時間依大小另調。</li>
+<li>所有溫度時間均為未實測的起始範圍，厚度、容器、裝載量會影響時間；沿用共通操作的中心熟度判準。各配方油量均為整餐合計。</li>
+</ul></article></div></section>
+
+    <footer><p>本頁為半馬訓練與飲食規劃參考，菜單與時程應依個人需求調整。訓練與營養內容不取代醫療建議。</p></footer>
+  </main>
+  <script>
+    const days = ['日','一','二','三','四','五','六'];
+    const taipeiWeekday = new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',weekday:'short'}).format(new Date());
+    const day = days.find(d => taipeiWeekday.includes(d));
+    const scheduleSelect = document.getElementById('schedule-select');
+    const dailyRows = [...document.querySelectorAll('#daily-plan table tbody tr')];
+    const alternateRows = [...document.querySelectorAll('#daily-alternate-data table tbody tr')];
+    const dailyOriginal = dailyRows.map(row => [row.cells[2].innerHTML, row.cells[4].innerHTML]);
+    const alternateByDay = new Map(alternateRows.map(row => [row.cells[0].textContent.trim(), row]));
+    function showSchedule() {
+      const alternate = scheduleSelect.value === 'tue-wed-fri';
+      document.getElementById('weekly-plan').hidden = alternate;
+      document.getElementById('alternate-plan').hidden = !alternate;
+      dailyRows.forEach((row, index) => {
+        const alternateRow = alternateByDay.get(row.cells[0].textContent.trim());
+        row.cells[2].innerHTML = alternate && alternateRow ? alternateRow.cells[1].innerHTML : dailyOriginal[index][0];
+        row.cells[4].innerHTML = alternate && alternateRow ? alternateRow.cells[2].innerHTML : dailyOriginal[index][1];
+        row.classList.toggle('today-row', row.cells[0].textContent.trim() === day);
+      });
+      const alternateNote = document.getElementById('daily-alternate-note');
+      alternateNote.hidden = !alternate;
+      alternateNote.textContent = document.querySelector('#daily-alternate-data p')?.textContent || '';
+      updateTimetableWeek();
+      const active = document.getElementById(alternate ? 'alternate-plan' : 'weekly-plan');
+      document.querySelectorAll('#weekly-plan tr,#alternate-plan tr').forEach(row => row.classList.remove('today-row'));
+      const today = [...active.querySelectorAll('table tbody tr')].find(row => row.cells[0]?.textContent.trim().startsWith(day));
+      if (today) {
+        today.classList.add('today-row');
+        document.getElementById('today-title').textContent = `星期${day} · 今天的安排`;
+        document.getElementById('today-plan').textContent = today.cells[1]?.textContent.trim() || '';
+      }
+      try { localStorage.setItem('fitness-schedule', scheduleSelect.value); } catch (_) {}
+    }
+    try { scheduleSelect.value = localStorage.getItem('fitness-schedule') || 'tue-thu-fri'; } catch (_) {}
+    if (!scheduleSelect.value) scheduleSelect.value = 'tue-thu-fri';
+    scheduleSelect.addEventListener('change', showSchedule);
+    const runRows = [...document.querySelectorAll('#run-table table tbody tr')];
+    const weekSelect = document.getElementById('week-select');
+    runRows.forEach((_, index) => weekSelect.add(new Option(`Week ${index+1}`, String(index+1))));
+    function updateTimetableWeek() {
+      const index = Math.max(0, Number(weekSelect.value)-1);
+      const runPlan = runRows[index]?.cells[1]?.textContent.trim() || '';
+      dailyRows.forEach(row => [row.cells[2], row.cells[4]].forEach(cell => {
+        cell.textContent = cell.textContent.replace(/依當週(?:跑走)?主課/, `Week ${index+1} ${runPlan}`);
+      }));
+    }
+    function showWeek() {
+      const index = Math.max(0, Number(weekSelect.value)-1);
+      document.getElementById('selected-week-title').textContent = `Week ${index+1} 跑走`;
+      document.getElementById('selected-week-plan').textContent = runRows[index]?.cells[1]?.textContent.trim() || '';
+      runRows.forEach((row, i) => row.classList.toggle('today-row', i === index));
+      showSchedule();
+      try { localStorage.setItem('fitness-week', String(index+1)); } catch (_) {}
+    }
+    try { weekSelect.value = localStorage.getItem('fitness-week') || '1'; } catch (_) { weekSelect.value = '1'; }
+    if (!weekSelect.value) weekSelect.value = '1';
+    weekSelect.addEventListener('change', showWeek);
+    showWeek();
+    let filter = '全部';
+    const search = document.getElementById('recipe-search');
+    const cards = [...document.querySelectorAll('.recipe')];
+    function updateRecipes() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const show = (filter === '全部' || card.dataset.category === filter) && card.dataset.search.includes(query);
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      document.getElementById('recipe-empty').hidden = visible !== 0;
+    }
+    search.addEventListener('input', updateRecipes);
+    document.querySelectorAll('.filter').forEach(button => button.addEventListener('click', () => {
+      filter = button.dataset.filter;
+      document.querySelectorAll('.filter').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      updateRecipes();
+    }));
+  </script>
+</body>
+</html>
