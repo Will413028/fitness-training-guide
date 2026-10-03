@@ -14,16 +14,18 @@ python3 -m http.server 8000 --directory site
 
 ## Cloudflare Pages
 
-網站使用純 HTML、CSS 與 JavaScript，沒有建置步驟。連接 GitHub repository 時，Cloudflare Pages 設定如下：
+網站使用純 HTML、CSS 與 JavaScript。正式網站已部署至 [fitness-training-guide.pages.dev](https://fitness-training-guide.pages.dev)。
+
+Cloudflare Pages 已連接 GitHub repository，推送 `main` 會自動建置與部署：
 
 - Framework preset：None
-- Build command：留空
+- Build command：`exit 0`
 - Build output directory：`site`
 - Production branch：`main`
 
-Cloudflare Pages 的 Git integration 會在 production branch 更新後自動部署。設定方式見[Cloudflare Pages Git integration 文件](https://developers.cloudflare.com/pages/configuration/git-integration/)與[建置設定文件](https://developers.cloudflare.com/pages/configuration/build-configuration/)。
+設定方式見[Cloudflare Pages Git integration 文件](https://developers.cloudflare.com/pages/configuration/git-integration/)與[建置設定文件](https://developers.cloudflare.com/pages/configuration/build-configuration/)。
 
-GitHub public repository 已建立：https://github.com/Will413028/fitness-training-guide。Cloudflare Pages Git integration 尚未設定，網站尚未部署。
+GitHub public repository：[Will413028/fitness-training-guide](https://github.com/Will413028/fitness-training-guide)。
 
 ## 公開內容範圍
 
