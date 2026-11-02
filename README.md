@@ -16,7 +16,7 @@ python3 -m http.server 8000 --directory site
 
 網站使用純 HTML、CSS 與 JavaScript。正式網站已部署至 [fitness-training-guide.pages.dev](https://fitness-training-guide.pages.dev)。
 
-Cloudflare Pages 已連接 GitHub repository，推送 `main` 會自動建置與部署：
+Cloudflare Pages 已連接 GitHub repository。日常改動推到 `dev`（Cloudflare 建 Preview）；`main` 只經 `dev`→`main` 的 PR 以 merge commit 合併，合併後自動建置與部署正式站：
 
 - Framework preset：None
 - Build command：`exit 0`
